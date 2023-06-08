@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -34,6 +35,7 @@ const Login = () => {
                                 <div className="form-control mt-6">
                                     <input type="submit" className="btn btn-primary" value="Login" />
                                 </div>
+                                <p>Do not Have an account? Please <Link className="text-primary hover:underline" to="/register">Register</Link></p>
                                 <div className="divider">OR</div>
                                 <SocialLogin />
                             </div>
