@@ -79,7 +79,7 @@ const Foot = () => {
                             year={2022}
                         />
                         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                            <Footer.Icon
+                            {/* <Footer.Icon
                                 href="#"
                                 icon="youtube"
                             />
@@ -98,7 +98,7 @@ const Foot = () => {
                             <Footer.Icon
                                 href="#"
                                 icon="Icon"
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>

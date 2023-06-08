@@ -39,7 +39,7 @@ const NavigationBar = () => {
                 </div>
                 <div className="navbar-end gap-4">
                     <Link>Profile</Link>
-                    <Link>Login</Link>
+                    <Link to="/login">Login</Link>
                 </div>
             </div>
         </div>
