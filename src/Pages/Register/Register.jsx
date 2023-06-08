@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
@@ -7,7 +6,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 const image_hosting_token = import.meta.env.VITE_image_hosting_token;
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, googleLogin } = useContext(AuthContext);
     const [error, setError] = useState('');
     const image_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
 
@@ -34,10 +33,10 @@ const Register = () => {
                         if (imgResponse.success) {
                             const img = imgResponse.data.display_url;
                             updateUserProfile(data.name, img)
-                            .then(()=>{})
-                            .catch(error=>{
-                                console.log(error.message)
-                            })
+                                .then(() => { })
+                                .catch(error => {
+                                    console.log(error.message)
+                                })
                         }
                     })
                 console.log(createdUser)
@@ -48,6 +47,21 @@ const Register = () => {
                 console.log(err.message)
             })
     };
+
+    const handleGoogleSignIn = () => {
+        googleLogin()
+            .then(result => {
+                console.log(result.user)
+                // save user to db
+                saveUser(result.user)
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                // setLoading(false)
+                console.log(err.message)
+                toast.error(err.message)
+            })
+    }
 
     return (
         <div className="mt-20 mb-20">
@@ -105,7 +119,14 @@ const Register = () => {
                                 </div>
                                 <p>Already Have an account? Please <Link className="text-primary hover:underline" to="/login">Login</Link></p>
                                 <div className="divider">OR</div>
-                                <SocialLogin />
+                                <div
+                                    onClick={handleGoogleSignIn}
+                                    className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+                                >
+                                    <FcGoogle size={32} />
+
+                                    <p>Continue with Google</p>
+                                </div>
                             </div>
                         </div>
                     </div>
