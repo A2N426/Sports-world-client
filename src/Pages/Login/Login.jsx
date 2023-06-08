@@ -1,14 +1,34 @@
 import { useForm } from "react-hook-form";
-import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import { FcGoogle } from 'react-icons/fc';
+
 
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
+    const { googleLogin } = useContext(AuthContext)
+
 
     const onSubmit = data => {
         console.log(data)
     };
+
+    const handleGoogleSignIn = () => {
+        googleLogin()
+            .then(result => {
+                console.log(result.user)
+                // // save user to db
+                // saveUser(result.user)
+                // navigate(from, { replace: true })
+            })
+            .catch(err => {
+                // setLoading(false)
+                console.log(err.message)
+                // toast.error(err.message)
+            })
+    }
 
     return (
         <div className="mt-20 mb-20">
@@ -37,7 +57,14 @@ const Login = () => {
                                 </div>
                                 <p>Do not Have an account? Please <Link className="text-primary hover:underline" to="/register">Register</Link></p>
                                 <div className="divider">OR</div>
-                                <SocialLogin />
+                                <div
+                                    onClick={handleGoogleSignIn}
+                                    className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+                                >
+                                    <FcGoogle size={32} />
+
+                                    <p>Continue with Google</p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import { FcGoogle } from 'react-icons/fc';
+import { saveUser } from "../../api/auth";
 
 const image_hosting_token = import.meta.env.VITE_image_hosting_token;
 const Register = () => {
@@ -33,7 +35,9 @@ const Register = () => {
                         if (imgResponse.success) {
                             const img = imgResponse.data.display_url;
                             updateUserProfile(data.name, img)
-                                .then(() => { })
+                                .then(() => {
+                                    saveUser(createdUser)
+                                })
                                 .catch(error => {
                                     console.log(error.message)
                                 })
@@ -54,12 +58,12 @@ const Register = () => {
                 console.log(result.user)
                 // save user to db
                 saveUser(result.user)
-                navigate(from, { replace: true })
+                // navigate(from, { replace: true })
             })
             .catch(err => {
                 // setLoading(false)
                 console.log(err.message)
-                toast.error(err.message)
+                // toast.error(err.message)
             })
     }
 
