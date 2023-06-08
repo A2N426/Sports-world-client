@@ -17,17 +17,6 @@ const Register = () => {
         const formData = new FormData();
         formData.append("image", data.image[0])
 
-        fetch(image_url, {
-            method: "POST",
-            body: formData
-        })
-            .then(res => res.json())
-            .then(imgResponse => {
-                if (imgResponse.success) {
-                    const img = imgResponse.data.display_url;
-                    handleUpdateProfile(data.name, img);
-                }
-            })
 
         if (data.password !== data.confirmPassword) {
             return setError("Password Doesn't match")
@@ -36,16 +25,28 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const createdUser = result.user;
+                fetch(image_url, {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(imgResponse => {
+                        if (imgResponse.success) {
+                            const img = imgResponse.data.display_url;
+                            updateUserProfile(data.name, img)
+                            .then(()=>{})
+                            .catch(error=>{
+                                console.log(error.message)
+                            })
+                        }
+                    })
                 console.log(createdUser)
+
             })
             .catch(err => {
                 setError(err.message)
                 console.log(err.message)
             })
-    };
-
-    const handleUpdateProfile = (name, image) => {
-        updateUserProfile(name, image)
     };
 
     return (
