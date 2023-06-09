@@ -1,18 +1,47 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { FcGoogle } from 'react-icons/fc';
-
-
+import { saveUser } from "../../api/auth";
+import { TbFidgetSpinner } from 'react-icons/tb';
+import { Icon } from 'react-icons-kit';
+import { eyeOff } from 'react-icons-kit/feather/eyeOff';
+import { eye } from 'react-icons-kit/feather/eye'
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    const { googleLogin } = useContext(AuthContext)
+    const { googleLogin, signIn, loading, setLoading } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/"
+    const [password, setPassword] = useState("");
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(eyeOff);
 
+    // password hide un hide
+    const handleToggle = () => {
+        if (type === 'password') {
+            setIcon(eye);
+            setType('text')
+        } else {
+            setIcon(eyeOff)
+            setType('password')
+        }
+    }
 
+    // login 
     const onSubmit = data => {
-        console.log(data)
+        signIn(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log("from login", loggedUser)
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                setLoading(false)
+                console.log("from login error", error.message)
+            })
     };
 
     const handleGoogleSignIn = () => {
@@ -20,11 +49,11 @@ const Login = () => {
             .then(result => {
                 console.log(result.user)
                 // // save user to db
-                // saveUser(result.user)
-                // navigate(from, { replace: true })
+                saveUser(result.user)
+                navigate(from, { replace: true })
             })
             .catch(err => {
-                // setLoading(false)
+                setLoading(false)
                 console.log(err.message)
                 // toast.error(err.message)
             })
@@ -47,13 +76,29 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input {...register("password", { required: true })} type="password" placeholder="password" className="input input-bordered" />
+                                    <div className="flex">
+                                        <input {...register("password", { required: true })} type={type}
+                                            name="password"
+                                            placeholder="Password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            autoComplete="current-password" className="input input-bordered w-full" />
+                                        <span className="flex justify-around cursor-pointer items-center" onClick={handleToggle}>
+                                            <Icon class="absolute mr-10" icon={icon} size={20} />
+                                        </span>
+                                    </div>
                                     <label className="label">
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
-                                    <input type="submit" className="btn btn-primary" value="Login" />
+                                    <button type="submit" className="btn btn-primary" value="Login">
+                                        {loading ? (
+                                            <TbFidgetSpinner className='m-auto animate-spin' size={24} />
+                                        ) : (
+                                            'Login'
+                                        )}
+                                    </button>
                                 </div>
                                 <p>Do not Have an account? Please <Link className="text-primary hover:underline" to="/register">Register</Link></p>
                                 <div className="divider">OR</div>

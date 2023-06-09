@@ -1,16 +1,38 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { FcGoogle } from 'react-icons/fc';
 import { saveUser } from "../../api/auth";
+import { TbFidgetSpinner } from 'react-icons/tb';
+import { toast } from "react-hot-toast";
+import { Icon } from 'react-icons-kit';
+import { eyeOff } from 'react-icons-kit/feather/eyeOff';
+import { eye } from 'react-icons-kit/feather/eye'
 
 const image_hosting_token = import.meta.env.VITE_image_hosting_token;
 const Register = () => {
+    const [password, setPassword] = useState("");
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(eyeOff);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile, googleLogin } = useContext(AuthContext);
+    const { createUser, updateUserProfile, googleLogin, loading, setLoading } = useContext(AuthContext);
     const [error, setError] = useState('');
     const image_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/"
+
+    // password hide un hide
+    const handleToggle = () => {
+        if (type === 'password') {
+            setIcon(eye);
+            setType('text')
+        } else {
+            setIcon(eyeOff)
+            setType('password')
+        }
+    }
 
     const onSubmit = data => {
         setError("")
@@ -36,18 +58,25 @@ const Register = () => {
                             const img = imgResponse.data.display_url;
                             updateUserProfile(data.name, img)
                                 .then(() => {
+                                    toast.success('Signup successful')
                                     saveUser(createdUser)
+                                    navigate(from, { replace: true })
+
                                 })
                                 .catch(error => {
+                                    toast.error(error.message)
+                                    setLoading(false)
                                     console.log(error.message)
                                 })
                         }
                     })
-                console.log(createdUser)
+                console.log("from register", createdUser)
 
             })
             .catch(err => {
                 setError(err.message)
+                toast.error(err.message)
+                setLoading(false)
                 console.log(err.message)
             })
     };
@@ -58,12 +87,12 @@ const Register = () => {
                 console.log(result.user)
                 // save user to db
                 saveUser(result.user)
-                // navigate(from, { replace: true })
+                navigate(from, { replace: true })
             })
             .catch(err => {
-                // setLoading(false)
+                setLoading(false)
                 console.log(err.message)
-                // toast.error(err.message)
+                toast.error(err.message)
             })
     }
 
@@ -92,12 +121,22 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input {...register("password", {
-                                        required: true,
-                                        minLength: 6,
-                                        maxLength: 20,
-                                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                                    })} type="password" placeholder="password" className="input input-bordered" />
+                                    <div className="flex">
+                                        <input {...register("password", {
+                                            required: true,
+                                            minLength: 6,
+                                            maxLength: 20,
+                                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                                        })} type={type}
+                                            name="password"
+                                            placeholder="Password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            autoComplete="current-password" className="input input-bordered w-full" />
+                                        <span className="flex justify-around cursor-pointer items-center" onClick={handleToggle}>
+                                            <Icon class="absolute mr-10" icon={icon} size={20} />
+                                        </span>
+                                    </div>
                                     {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                                     {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
                                     {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
@@ -119,7 +158,13 @@ const Register = () => {
                                     {errors.photo?.type === 'required' && <p className="text-red-600">Photo is Required</p>}
                                 </div>
                                 <div className="form-control mt-6">
-                                    <input type="submit" className="btn btn-primary" value="Register" />
+                                    <button type="submit" className="btn btn-primary" value="Login">
+                                        {loading ? (
+                                            <TbFidgetSpinner className='m-auto animate-spin' size={24} />
+                                        ) : (
+                                            'Register'
+                                        )}
+                                    </button>
                                 </div>
                                 <p>Already Have an account? Please <Link className="text-primary hover:underline" to="/login">Login</Link></p>
                                 <div className="divider">OR</div>

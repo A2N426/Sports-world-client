@@ -5,7 +5,7 @@ import Container from "../../Pages/Shared/Container/Container";
 const PopularInstructor = () => {
     const [instructors, setInstructors] = useState([])
     useEffect(() => {
-        fetch("Instructor.json")
+        fetch(`${import.meta.env.VITE_API_URL}/instructors`)
             .then(res => res.json())
             .then(data => setInstructors(data))
     }, [])

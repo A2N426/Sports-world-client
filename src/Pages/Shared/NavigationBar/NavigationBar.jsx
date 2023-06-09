@@ -1,20 +1,32 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const NavigationBar = () => {
+    const { user, logOut } = useAuth();
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(() => { })
+    }
+
     const navItem = <>
         <li>
             <Link>Home</Link>
         </li>
         <li>
-            <Link>Classes</Link>
-        </li>
-        <li>
             <Link>Instructors</Link>
         </li>
         <li>
+            <Link>Classes</Link>
+        </li>
+        {user && <li>
             <Link>Dashboard</Link>
+        </li>}
+        <li>
+            <Link onClick={handleLogout}>logout</Link>
         </li>
     </>
+
     return (
         <div>
             <div className="navbar bg-base-200 lg:px-24 px-6">
@@ -28,8 +40,8 @@ const NavigationBar = () => {
                         </ul>
                     </div>
                     <div to="/" className="flex items-center gap-3">
-                        <img className="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="" />
-                        <a className="normal-case text-xl font-semibold">Photo World</a>
+                        <img className="h-10 lg:w-10 w-14 rounded-full" src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="" />
+                        <a className="normal-case text-xl font-semibold">Open Sports</a>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -38,8 +50,14 @@ const NavigationBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-4">
-                    <Link>Profile</Link>
-                    <Link to="/login">Login</Link>
+                    {user ?
+                        <img className="rounded-full h-10" src={user.photoURL} alt="" />
+                        :
+                        <>
+                            <Link to="/login">Login</Link>
+                            <Link to="/register">Sign Up</Link>
+                        </>
+                    }
                 </div>
             </div>
         </div>

@@ -8,7 +8,8 @@
             "fitness",
             "gym",
             "running"
-        ]
+        ],
+        "students":30
     },
     {
         "image": "https://images.pexels.com/photos/5212340/pexels-photo-5212340.jpeg?auto=compress&cs=tinysrgb&w=300",
@@ -19,7 +20,8 @@
             "fitness",
             "gym",
             "running"
-        ]
+        ],
+        "students":38
     },
     {
         "image": "https://images.pexels.com/photos/5212338/pexels-photo-5212338.jpeg?auto=compress&cs=tinysrgb&w=300",
@@ -30,7 +32,8 @@
             "fitness",
             "gym",
             "running"
-        ]
+        ],
+        "students":35
     },
     {
         "image": "https://images.pexels.com/photos/3837474/pexels-photo-3837474.jpeg?auto=compress&cs=tinysrgb&w=300",
@@ -41,7 +44,8 @@
             "fitness",
             "gym",
             "running"
-        ]
+        ],
+        "students":40
     },
     {
         "image": "https://images.pexels.com/photos/7207353/pexels-photo-7207353.jpeg?auto=compress&cs=tinysrgb&w=300",
@@ -52,7 +56,8 @@
             "fitness",
             "gym",
             "running"
-        ]
+        ],
+        "students":50
     },
     {
         "image": "https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg?auto=compress&cs=tinysrgb&w=300",
@@ -63,6 +68,7 @@
             "fitness",
             "gym",
             "running"
-        ]
+        ],
+        "students":20
     }
 ]
