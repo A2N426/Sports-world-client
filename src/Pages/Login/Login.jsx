@@ -84,7 +84,7 @@ const Login = () => {
                                             onChange={(e) => setPassword(e.target.value)}
                                             autoComplete="current-password" className="input input-bordered w-full" />
                                         <span className="flex justify-around cursor-pointer items-center" onClick={handleToggle}>
-                                            <Icon class="absolute mr-10" icon={icon} size={20} />
+                                            <Icon className="absolute mr-10" icon={icon} size={20} />
                                         </span>
                                     </div>
                                     <label className="label">

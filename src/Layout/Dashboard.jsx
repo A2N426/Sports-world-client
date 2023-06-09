@@ -4,7 +4,11 @@ import Foot from "../Pages/Shared/Foot/Foot";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
-    console.log("from isAdmin", isAdmin)
+    const admin = isAdmin?.admin?.admin;
+    const instructor = isAdmin?.instructor?.instructor;
+    // console.log("from i",instructor)
+
+
     return (
         <div>
             <div className="drawer mb-10">
@@ -25,17 +29,15 @@ const Dashboard = () => {
                             <ul className="menu menu-horizontal">
                                 {/* Navbar menu content here */}
                                 {
-                                    isAdmin
-                                        ?
-                                        <>
-                                            <li><a>Admin 1</a></li>
-                                            <li><a>Admin 2</a></li>
-                                        </> 
-                                        :
-                                        <>
-                                            <li><a>Students 1</a></li>
-                                            <li><a>Students 2</a></li>
-                                        </>
+                                    <ul>
+                                        {admin ? (
+                                            <li><a>admin</a></li>
+                                        ) : instructor ? (
+                                            <li><a>instructor</a></li>
+                                        ) : (
+                                            <li><a>student</a></li>
+                                        )}
+                                    </ul>
                                 }
                             </ul>
                         </div>
@@ -47,15 +49,14 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-base-200">
                         {/* Sidebar content here */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+
 
                     </ul>
 
                 </div>
             </div>
             <Foot />
-        </div>
+        </div >
     );
 };
 
