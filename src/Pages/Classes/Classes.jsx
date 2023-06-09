@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import './Class.css'
-import Class from "../../components/Home/Class";
 import Container from "../Shared/Container/Container";
+import SingleClass from "./SingleClass";
 
 const Classes = () => {
     const [classes, setClasses] = useState([])
+    
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/classes`)
@@ -29,7 +30,7 @@ const Classes = () => {
 
                     <h1 className="mt-20 mb-10 text-4xl uppercase text-center text-primary font-semibold">This is our Presentation</h1>
                     <div className="grid gird-cols-1 lg:grid-cols-3 gap-5">
-                        {classes.map((singleClass, index) => <Class key={index} singleClass={singleClass}></Class>)}
+                        {classes.map((singleClass, index) => <SingleClass key={index} singleClass={singleClass}></SingleClass>)}
                     </div>
                 </div>
             </Container>
