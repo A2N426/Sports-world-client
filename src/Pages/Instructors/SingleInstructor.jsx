@@ -10,10 +10,10 @@ const SingleInstructor = ({ instructor }) => {
                     <h2 className="card-title">{instructor.name}</h2>
                     <p>{instructor.email}</p>
                     <ol>
-                    <li className='text-lg font-semibold'>All classes: 3</li>
-                        {instructor.name_of_classes.map((singleClass, index) => <>
+                        <li className='text-lg font-semibold'>All classes: 3</li>
+                        {instructor.name_of_classes.map((singleClass, index) =>
                             <li className="uppercase flex items-center gap-1" key={index}><MdVerifiedUser className='text-primary' />{singleClass}</li>
-                        </>)}
+                        )}
                     </ol>
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary">See More Classes</button>
