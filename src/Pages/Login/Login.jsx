@@ -39,7 +39,7 @@ const Login = () => {
                 navigate(from, { replace: true })
             })
             .catch(error => {
-                setLoading(false)
+                // setLoading(false)
                 console.log("from login error", error.message)
             })
     };
@@ -53,7 +53,7 @@ const Login = () => {
                 navigate(from, { replace: true })
             })
             .catch(err => {
-                setLoading(false)
+                // setLoading(false)
                 console.log(err.message)
                 // toast.error(err.message)
             })
@@ -93,11 +93,12 @@ const Login = () => {
                                 </div>
                                 <div className="form-control mt-6">
                                     <button type="submit" className="btn btn-primary" value="Login">
-                                        {loading ? (
+                                        {/* {loading ? (
                                             <TbFidgetSpinner className='m-auto animate-spin' size={24} />
                                         ) : (
                                             'Login'
-                                        )}
+                                        )} */}
+                                        Login
                                     </button>
                                 </div>
                                 <p>Do not Have an account? Please <Link className="text-primary hover:underline" to="/register">Register</Link></p>

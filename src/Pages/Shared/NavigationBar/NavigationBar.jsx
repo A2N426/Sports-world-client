@@ -17,10 +17,10 @@ const NavigationBar = () => {
             <Link to="/instructors">Instructors</Link>
         </li>
         <li>
-            <Link to="/classes">Classes</Link>
+            <Link to="/classes ">Classes</Link>
         </li>
         {user && <li>
-            <Link>Dashboard</Link>
+            <Link to="/dashboard">Dashboard</Link>
         </li>}
         <li>
             <Link onClick={handleLogout}>logout</Link>
