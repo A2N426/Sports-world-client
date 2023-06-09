@@ -11,7 +11,7 @@ const Class = ({ singleClass }) => {
                     <h2 className="card-title">{singleClass.instructor}</h2>
                     <p>Are You Ready for the 2023 WNFC Season? Gear Up for the 2023 Season. </p>
                     <div className="card-actions">
-                        <button className="btn btn-primary">Book Now</button>
+                        <button className="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
             </div>

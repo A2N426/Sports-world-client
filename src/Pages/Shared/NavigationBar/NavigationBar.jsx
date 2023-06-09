@@ -11,13 +11,13 @@ const NavigationBar = () => {
 
     const navItem = <>
         <li>
-            <Link>Home</Link>
+            <Link to="/">Home</Link>
         </li>
         <li>
-            <Link>Instructors</Link>
+            <Link to="/instructors">Instructors</Link>
         </li>
         <li>
-            <Link>Classes</Link>
+            <Link to="/classes">Classes</Link>
         </li>
         {user && <li>
             <Link>Dashboard</Link>
