@@ -5,14 +5,14 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const MySelected = () => {
-    const { user, loading } = useAuth();
+    const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const { refetch, data: selected = [] } = useQuery({
         queryKey: ["selected", user?.email],
-        enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure(`/selected?email=${user?.email}`)
             return res.data
+
         }
     })
 
@@ -62,7 +62,7 @@ const MySelected = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            selected.map((singleClass, index) => <tr key={index}>
+                            selected.length > 0 ? selected?.map((singleClass, index) => <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{singleClass.className}</td>
                                 <td>{singleClass.instructor}</td>
@@ -76,6 +76,16 @@ const MySelected = () => {
                                         className="btn btn-xs bg-red-600 text-white">Delete</button>
                                 </td>
                             </tr>)
+                                :
+                                selected.length === 0 ?
+                                    <>
+                                        <h1 className="text-xl text-red-600">Please Refresh the site, Sometimes you face the VERCEL data loading problem! Thank you.</h1>
+
+                                    </>
+                                    :
+                                    <>
+                                        <h1 className="text-xl text-red-600">There is no class selected...</h1>
+                                    </>
                         }
                     </tbody>
                 </table>

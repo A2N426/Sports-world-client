@@ -76,7 +76,7 @@ const Register = () => {
             .catch(err => {
                 setError(err.message)
                 toast.error(err.message)
-                setLoading(false)
+                // setLoading(false)
                 console.log(err.message)
             })
     };
@@ -90,7 +90,7 @@ const Register = () => {
                 navigate(from, { replace: true })
             })
             .catch(err => {
-                setLoading(false)
+                // setLoading(false)
                 console.log(err.message)
                 toast.error(err.message)
             })
@@ -99,7 +99,7 @@ const Register = () => {
     return (
         <div className="mt-20 mb-20">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="lg:w-2/6 w-3/4 mx-auto min-h-screen">
+                <div className="lg:w-4/6 w-3/4 mx-auto min-h-screen">
                     <div className="">
                         <div className="card shadow-2xl bg-base-100">
                             <div className="card-body">
@@ -159,11 +159,12 @@ const Register = () => {
                                 </div>
                                 <div className="form-control mt-6">
                                     <button type="submit" className="btn btn-primary" value="Login">
-                                        {loading ? (
+                                        {/* {loading ? (
                                             <TbFidgetSpinner className='m-auto animate-spin' size={24} />
                                         ) : (
                                             'Register'
-                                        )}
+                                        )} */}
+                                        Register
                                     </button>
                                 </div>
                                 <p>Already Have an account? Please <Link className="text-primary hover:underline" to="/login">Login</Link></p>

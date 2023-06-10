@@ -83,9 +83,9 @@ const CheckoutForm = ({ selectedClass, price }) => {
             }
             axiosSecure.post("/payments", payment)
                 .then(res => {
-                    axiosSecure.put(`/reduced/${selectedClass._id}`)
+                    axiosSecure.put(`/reduced/${selectedClass._id}`, {current_seats:selectedClass.available_seats-1})
                         .then(res => {
-                            console.log("from payments 88", res.data)
+                            console.log("reduced done alhamdulillah", res.data)
                         })
                     console.log("from payment 86", res.data)
                     if (res.data.deleteResult.deletedCount > 0) {
