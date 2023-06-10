@@ -83,28 +83,36 @@ const CheckoutForm = ({ selectedClass, price }) => {
             }
             axiosSecure.post("/payments", payment)
                 .then(res => {
-                    axiosSecure.put(`/reduced/${selectedClass._id}`, {current_seats:selectedClass.available_seats-1})
+                    axiosSecure.put(`/reduced/${selectedClass._id}`, { current_seats: selectedClass.available_seats - 1 })
                         .then(res => {
                             console.log("reduced done alhamdulillah", res.data)
+                            if (res.data.modifiedCount > 0) {
+                                const { image, className, instructor, available_seats, price, students } = selectedClass;
+                                const enrolledClass = { email: user?.email, name: user?.displayName, image, className, instructor, available_seats, price, students }
+                                axiosSecure.post(`/enrolled`, enrolledClass)
+                                    .then(res => {
+                                        if (res.data.insertedId) {
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Enrollment Successfully done',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                        console.log("enrolled success", res.data)
+                                    })
+                            }
                         })
-                    console.log("from payment 86", res.data)
-                    if (res.data.deleteResult.deletedCount > 0) {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Successfully buying done',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
+                    console.log("from payment 96", res.data)
                 })
         }
 
     }
     return (
         <>
-            <form className="mx-auto border hover:border-2 hover:border-red-600 p-10" onSubmit={handleSubmit}>
-                <div className="w-2/4 mx-auto">
+            <form className="mx-auto lg:border lg:hover:border-2 hover:border-red-600 p-10" onSubmit={handleSubmit}>
+                <div className="lg:w-2/4 mx-auto">
                     <CardElement
                         options={{
                             style: {

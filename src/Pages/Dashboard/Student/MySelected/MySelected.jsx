@@ -77,15 +77,10 @@ const MySelected = () => {
                                 </td>
                             </tr>)
                                 :
-                                selected.length === 0 ?
-                                    <>
-                                        <h1 className="text-xl text-red-600">Please Refresh the site, Sometimes you face the VERCEL data loading problem! Thank you.</h1>
+                                <tr>
+                                    <td className="text-xl text-red-600">Please Refresh the site or select your expected class, Sometimes you face the VERCEL data loading problem! Thank you.</td>
 
-                                    </>
-                                    :
-                                    <>
-                                        <h1 className="text-xl text-red-600">There is no class selected...</h1>
-                                    </>
+                                </tr>
                         }
                     </tbody>
                 </table>
