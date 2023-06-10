@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 const MyEnrolled = () => {
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    // },[])
+    },[])
 
     return (
         <div>

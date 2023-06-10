@@ -60,7 +60,7 @@ const SingleClass = ({ singleClass }) => {
     return (
         <div>
             <Card
-                className={`${singleClass.available_seats === 0 ? "cursor-not-allowed bg-error text-white" : ""}`}
+                className={`${singleClass.available_seats === 0 ? "cursor-not-allowed bg-red-800" : ""}`}
                 imgAlt="Meaningful alt text for an image that is not purely decorative"
                 imgSrc={singleClass.image}
             >
