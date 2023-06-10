@@ -12,6 +12,7 @@ import Dashboard from "../Layout/Dashboard";
 import StudentHome from "../Pages/Dashboard/Student/StudentHome/StudentHome";
 import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
+import Payment from "../Pages/Dashboard/Student/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "studentHome",
                 element: <StudentHome />
+            },
+            {
+                path: "payment/:id",
+                element: <Payment />
             },
             // instructor route
             {

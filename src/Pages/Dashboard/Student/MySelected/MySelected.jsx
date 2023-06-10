@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelected = () => {
     const { user, loading } = useAuth();
@@ -67,7 +68,7 @@ const MySelected = () => {
                                 <td>{singleClass.instructor}</td>
                                 <td>${singleClass.price}</td>
                                 <td>
-                                    <button className="btn btn-xs bg-blue-600 text-white">Pay</button>
+                                    <Link to={`/dashboard/payment/${singleClass._id}`} className="btn btn-xs bg-blue-600 text-white">Pay</Link>
                                 </td>
                                 <td>
                                     <button
