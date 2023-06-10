@@ -28,17 +28,18 @@ const Dashboard = () => {
                         <div className="flex-none hidden lg:block">
                             <ul className="menu menu-horizontal">
                                 {/* Navbar menu content here */}
-                                {
+                                {admin ? (
+                                    <li><a>admin</a></li>
+                                ) : instructor ? (
                                     <ul>
-                                        {admin ? (
-                                            <li><a>admin</a></li>
-                                        ) : instructor ? (
-                                            <li><a>instructor</a></li>
-                                        ) : (
-                                            <li><Link to="/MySelected">My Selected Class</Link></li>
-                                        )}
+                                        <li><a>instructor</a></li>
                                     </ul>
-                                }
+                                ) : (
+                                    <ul>
+                                        <li><Link to="/dashboard/enrolled">My Selected Class</Link></li>
+                                        <li><Link to="/dashboard/history">My Enrolled History</Link></li>
+                                    </ul>
+                                )}
                             </ul>
                         </div>
                     </div>
@@ -54,7 +55,7 @@ const Dashboard = () => {
                         ) : instructor ? (
                             <li><a>instructor</a></li>
                         ) : (
-                            <li><Link to="/MySelected">My Selected Class</Link></li>
+                            <li><Link to="/dashboard/enrolled">My Enrolled Class</Link></li>
                         )}
 
                     </ul>

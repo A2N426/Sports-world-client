@@ -13,6 +13,8 @@ import StudentHome from "../Pages/Dashboard/Student/StudentHome/StudentHome";
 import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import Payment from "../Pages/Dashboard/Student/Payment/Payment";
+import MyEnrolled from "../Pages/Dashboard/Student/MyEnrolled/MyEnrolled";
+import PaymentsHistory from "../Pages/Dashboard/Student/PaymentsHistory/PaymentsHistory";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
             {
                 path: "payment/:id",
                 element: <Payment />
+            },
+            {
+                path: "enrolled",
+                element: <MyEnrolled />
+            },
+            {
+                path: "history",
+                element: <PaymentsHistory />
             },
             // instructor route
             {

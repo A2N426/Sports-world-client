@@ -87,18 +87,20 @@ const CheckoutForm = ({ selectedClass, price }) => {
                         .then(res => {
                             console.log("reduced done alhamdulillah", res.data)
                             if (res.data.modifiedCount > 0) {
+
+                                // for posting in enrolled
                                 const { image, className, instructor, available_seats, price, students } = selectedClass;
-                                const enrolledClass = { email: user?.email, name: user?.displayName, image, className, instructor, available_seats, price, students }
+
+                                const enrolledClass = { email: user?.email, name: user?.displayName, image, className, instructor, available_seats, price, students };
+                                
                                 axiosSecure.post(`/enrolled`, enrolledClass)
                                     .then(res => {
                                         if (res.data.insertedId) {
-                                            Swal.fire({
-                                                position: 'center',
-                                                icon: 'success',
-                                                title: 'Enrollment Successfully done',
-                                                showConfirmButton: false,
-                                                timer: 1500
-                                            })
+                                            Swal.fire(
+                                                'Good job!',
+                                                'You are successfully Enrolled',
+                                                'success'
+                                            )
                                         }
                                         console.log("enrolled success", res.data)
                                     })
