@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 const NavigationBar = () => {
     const { user, logOut } = useAuth();
@@ -8,6 +9,9 @@ const NavigationBar = () => {
             .then(() => { })
             .catch(() => { })
     }
+    const [isAdmin] = useAdmin();
+    const admin = isAdmin?.admin?.admin;
+    const instructor = isAdmin?.instructor?.instructor;
 
     const navItem = <>
         <li>
@@ -20,7 +24,13 @@ const NavigationBar = () => {
             <Link to="/classes ">Classes</Link>
         </li>
         {user && <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to={admin ? (
+                "/Dashboard/adminHome"
+            ) : instructor ? (
+                "/dashboard/instructorHome"
+            ) : (
+                "/dashboard/studentHome"
+            )}>Dashboard</Link>
         </li>}
         <li>
             <Link onClick={handleLogout}>logout</Link>

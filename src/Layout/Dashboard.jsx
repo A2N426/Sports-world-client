@@ -35,7 +35,7 @@ const Dashboard = () => {
                                         ) : instructor ? (
                                             <li><a>instructor</a></li>
                                         ) : (
-                                            <li><a>student</a></li>
+                                            <li><Link to="/MySelected">My Selected Class</Link></li>
                                         )}
                                     </ul>
                                 }

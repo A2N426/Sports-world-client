@@ -9,6 +9,9 @@ import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
+import StudentHome from "../Pages/Dashboard/Student/StudentHome/StudentHome";
+import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
     {
@@ -38,8 +41,25 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/dashboard",
-        element: <PrivateRoute><Dashboard /></PrivateRoute>
+        path: "dashboard",
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
+        children: [
+            // students Route
+            {
+                path: "studentHome",
+                element: <StudentHome />
+            },
+            // instructor route
+            {
+                path: "instructorHome",
+                element: <InstructorHome />
+            },
+            // admin route
+            {
+                path: "adminHome",
+                element: <AdminHome />
+            }
+        ]
     }
 ]);
 

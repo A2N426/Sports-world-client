@@ -3,13 +3,12 @@ import useRole from "../../hooks/useRole";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SingleClass = ({ singleClass }) => {
     const [role] = useRole()
     const { user } = useAuth()
     const navigate = useNavigate();
-    const handleSelect = (id) => {
+    const handleSelect = (singleClass) => {
         if (!user) {
             Swal.fire({
                 position: 'center',
@@ -21,15 +20,38 @@ const SingleClass = ({ singleClass }) => {
             navigate("/login")
             return;
         }
-        fetch(`${import.meta.env.VITE_API_URL}/class/status/${id}`, {
-            method: "PATCH",
+        const email = user?.email;
+        const { image, className, instructor, available_seats, price, students, _id } = singleClass;
+        const selectedClass = { id: _id, email, image, className, instructor, available_seats, price, students }
+        fetch(`${import.meta.env.VITE_API_URL}/selected/${_id}`, {
+            method: "PUT",
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify({ status: "selected" })
+            body: JSON.stringify(selectedClass)
         })
-        .then(res=>res.json())
-        .then(data=>console.log(data))
+            .then(res => res.json())
+            .then(data => {
+                if (data.matchedCount === 1) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'The class Already selected',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                if (data.upsertedCount > 0) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Successfully Selected',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                console.log(data)
+            })
     }
     return (
         <div>
@@ -50,7 +72,7 @@ const SingleClass = ({ singleClass }) => {
                     <button className="btn bg-blue-600 btn-disabled">Can not Select</button>
                     :
 
-                    <button onClick={() => handleSelect(singleClass._id)} className="btn btn-active btn-primary">Select</button>
+                    <button onClick={() => handleSelect(singleClass)} className="btn btn-active btn-primary">Select</button>
                 }
             </Card>
         </div>
