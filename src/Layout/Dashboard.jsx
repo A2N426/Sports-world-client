@@ -29,7 +29,7 @@ const Dashboard = () => {
                             <ul className="menu menu-horizontal">
                                 {/* Navbar menu content here */}
                                 {admin ? (
-                                    <li><a>admin</a></li>
+                                    <li><Link>Manage User</Link></li>
                                 ) : instructor ? (
                                     <ul>
                                         <li><Link to="/dashboard/myClasses">My Classes</Link></li>

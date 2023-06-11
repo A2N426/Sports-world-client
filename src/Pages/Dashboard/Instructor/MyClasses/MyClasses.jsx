@@ -34,15 +34,15 @@ const MyClasses = () => {
                         </thead>
                         <tbody>
                             {
-                                myClasses.map((singleClass, index) => <tr key={index}>
+                                myClasses?.map((singleClass, index) => <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{singleClass.className}</td>
                                     <td>{singleClass.available_seats}  seats left</td>
-                                    <td>{singleClass.students}</td>
+                                    <td>{singleClass?.students}</td>
                                     <td><p className={`${singleClass.status === "pending" ? "text-orange-400" :
-                                        singleClass.status === "approved" ? "text-success" :
+                                        singleClass?.status === "approved" ? "text-success" :
                                             "text-red-600"}`}>{singleClass.status}</p></td>
-                                    <td className={`$`}>{singleClass.status === "pending" ? "No feedback here" : singleClass.status === "approved" ? "No feedback here" : singleClass.feedback}</td>
+                                    <td>{singleClass?.feedback}</td>
                                     <td><button className="btn btn-xs bg-slate-500 text-white hover:text-black">Update</button></td>
                                 </tr>)
                             }

@@ -25,7 +25,7 @@ const NavigationBar = () => {
         </li>
         {user && <li>
             <Link to={admin ? (
-                "/Dashboard/adminHome"
+                "/Dashboard/manageClasses"
             ) : instructor ? (
                 "/dashboard/addClass"
             ) : (
