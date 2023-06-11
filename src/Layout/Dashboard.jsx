@@ -32,11 +32,11 @@ const Dashboard = () => {
                                     <li><a>admin</a></li>
                                 ) : instructor ? (
                                     <ul>
-                                        <li><a>instructor</a></li>
+                                        <li><Link>instructor</Link></li>
                                     </ul>
                                 ) : (
                                     <ul>
-                                        <li><Link to="/dashboard/enrolled">My Selected Class</Link></li>
+                                        <li><Link to="/dashboard/enrolled">My Erolled Classes</Link></li>
                                         <li><Link to="/dashboard/history">My Enrolled History</Link></li>
                                     </ul>
                                 )}

@@ -71,6 +71,7 @@ const SingleClass = ({ singleClass }) => {
                         <span className=" font-semibold">Available Seats:</span> {singleClass.available_seats}
                     </p>
                     <p className="text-xl"><span className="font-semibold">Price: </span>${singleClass.price}</p>
+                    <p className="text-xl"><span className="font-semibold">students: </span>{singleClass.students}</p>
                 </div>
                 {admin ? (
                     <button className="btn bg-blue-600 btn-disabled">Can not Select</button>

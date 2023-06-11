@@ -27,7 +27,7 @@ const NavigationBar = () => {
             <Link to={admin ? (
                 "/Dashboard/adminHome"
             ) : instructor ? (
-                "/dashboard/instructorHome"
+                "/dashboard/addClass"
             ) : (
                 "/dashboard/studentHome"
             )}>Dashboard</Link>

@@ -83,7 +83,7 @@ const CheckoutForm = ({ selectedClass, price }) => {
             }
             axiosSecure.post("/payments", payment)
                 .then(res => {
-                    axiosSecure.put(`/reduced/${selectedClass._id}`, { current_seats: selectedClass.available_seats - 1 })
+                    axiosSecure.put(`/reduced/${selectedClass._id}`, { current_seats: selectedClass.available_seats - 1, TotalEnrolledStudents: selectedClass.students + 1 })
                         .then(res => {
                             console.log("reduced done alhamdulillah", res.data)
                             if (res.data.modifiedCount > 0) {

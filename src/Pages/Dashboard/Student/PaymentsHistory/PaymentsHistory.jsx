@@ -24,7 +24,7 @@ const PaymentsHistory = () => {
                             <tr>
                                 <th>Sl</th>
                                 <th>Class Name</th>
-                                <th>Enrolled Date</th>
+                                <th>Enrolled Date : Sorted</th>
                                 <th>Fee</th>
                             </tr>
                         </thead>
