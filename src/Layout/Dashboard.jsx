@@ -32,7 +32,7 @@ const Dashboard = () => {
                                     <li><a>admin</a></li>
                                 ) : instructor ? (
                                     <ul>
-                                        <li><Link>instructor</Link></li>
+                                        <li><Link to="/dashboard/myClasses">My Classes</Link></li>
                                     </ul>
                                 ) : (
                                     <ul>
