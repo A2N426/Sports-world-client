@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from 'sweetalert2'
 
 const ManageClasses = () => {
     const [allClasses, setAllClasses] = useState([])
@@ -7,7 +8,7 @@ const ManageClasses = () => {
         fetch(`${import.meta.env.VITE_API_URL}/allClasses`)
             .then(res => res.json())
             .then(data => setAllClasses(data))
-    }, [])
+    }, [allClasses])
 
     // feedback working here
     const [feedText, setFeedbackText] = useState("")
@@ -18,10 +19,31 @@ const ManageClasses = () => {
     const [axiosSecure] = useAxiosSecure()
     const handleFeedback = id => {
         console.log("feedback", feedText)
-        axiosSecure.put(`/classes/${id}`, {feedText})
-        .then(res=>{
-            console.log(res.data)
-        })
+        axiosSecure.put(`/classes/${id}`, { feedText })
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire(
+                        'Good job!',
+                        'Successfully Feedback Send',
+                        'success'
+                    )
+                }
+            })
+    }
+
+    // updated status
+    const handleStatus = (id, status) => {
+        axiosSecure.put(`/classesStatus/${id}`, { status: status })
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire(
+                        'Good job!',
+                        'Status Updated!',
+                        'success'
+                    )
+                }
+            })
     }
     return (
         <div>
@@ -62,16 +84,16 @@ const ManageClasses = () => {
                                         <td>{singleClass.instructorEmail}</td>
                                         <td>{singleClass.available_seats}</td>
                                         <td>{singleClass.price}</td>
-                                        <td>{singleClass.status}</td>
+                                        <td className={`font-semibold ${singleClass.status === "approved" ? "text-success" : "text-red-600"}`}>{singleClass.status}</td>
                                         <td className="flex gap-2">
 
                                             <span onClick={() => window.my_modal_3.showModal()}>
                                                 <button onClick={() => setId(singleClass._id)} className="btn btn-xs btn-primary">Feedback</button>
                                             </span>
 
-                                            <button className="btn btn-primary btn-xs">approve</button>
+                                            <button onClick={() => handleStatus(singleClass._id, "approved")} className={`${singleClass.status === "approved" || singleClass.status === "denied" ? "btn btn-disabled btn-xs" : "btn btn-primary btn-xs"}`}>approve</button>
 
-                                            <button className="btn btn-error bg-red-600 btn-xs text-white">Deny</button>
+                                            <button onClick={() => handleStatus(singleClass._id, "denied")} className={`${singleClass.status === "approved" || singleClass.status === "denied" ? "btn btn-disabled btn-xs" : "btn btn-error bg-red-600 btn-xs text-white"}`}>Deny</button>
                                         </td>
                                     </tr>
                                 )

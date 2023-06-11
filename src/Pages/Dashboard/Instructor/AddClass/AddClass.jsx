@@ -3,6 +3,7 @@ import Container from "../../../Shared/Container/Container";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from 'sweetalert2'
 
 const image_hosting_token = import.meta.env.VITE_image_hosting_token;
 const AddClass = () => {
@@ -54,11 +55,18 @@ const AddClass = () => {
             .then(imageResponse => {
                 if (imageResponse.success) {
                     const image = imageResponse.data.display_url;
-                    const newClass = {...data,image,students:0}
+                    const newClass = { ...data, image, students: 0 }
                     axiosSecure.post("/classes", newClass)
-                    .then(res=>{
-                        console.log("after added class",res.data)
-                    })
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                Swal.fire(
+                                    'Your Operations Has been success',
+                                    'Class Successfully Added!',
+                                    'success'
+                                )
+                            }
+                            console.log("after added class", res.data)
+                        })
                 }
             })
     };

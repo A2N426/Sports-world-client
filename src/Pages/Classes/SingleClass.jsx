@@ -14,13 +14,11 @@ const SingleClass = ({ singleClass }) => {
     const navigate = useNavigate();
     const handleSelect = (singleClass) => {
         if (!user) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'og in before selecting the course.',
-                showConfirmButton: false,
-                timer: 1500
-            })
+            Swal.fire(
+                'Good job!',
+                'Login First before selecting!',
+                'success'
+            )
             navigate("/login")
             return;
         }

@@ -42,7 +42,7 @@ const MyClasses = () => {
                                     <td><p className={`${singleClass.status === "pending" ? "text-orange-400" :
                                         singleClass?.status === "approved" ? "text-success" :
                                             "text-red-600"}`}>{singleClass.status}</p></td>
-                                    <td>{singleClass?.feedback}</td>
+                                    <td>{singleClass?.feedback ? singleClass.feedback : "No feedback"}</td>
                                     <td><button className="btn btn-xs bg-slate-500 text-white hover:text-black">Update</button></td>
                                 </tr>)
                             }
