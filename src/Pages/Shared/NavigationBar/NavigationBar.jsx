@@ -16,16 +16,16 @@ const NavigationBar = () => {
 
     const navItem = <>
         <li>
-            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/">Home</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'text-black uppercase font-bold transition-colors duration-200' : 'hover:text-blue-700 font-bold uppercase')} to="/">Home</NavLink>
         </li>
         <li>
-            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/instructors">Instructors</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 font-bold uppercase transition-colors duration-200' : 'hover:text-blue-700 text-info font-bold uppercase')} to="/instructors">Instructors</NavLink>
         </li>
         <li>
-            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/classes ">Classes</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-bold tracking-wide transition-colors  duration-200' : 'hover:text-blue-700 font-bold uppercase text-success')} to="/classes">Classes</NavLink>
         </li>
         {user && <li>
-            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to={admin ? (
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 font-bold transition-colors duration-200 uppercase' : 'hover:text-blue-700 uppercase font-bold text-yellow-500')} to={admin ? (
                 "/Dashboard/manageClasses"
             ) : instructor ? (
                 "/dashboard/addClass"
@@ -34,7 +34,7 @@ const NavigationBar = () => {
             )}><MdSpaceDashboard size={20} /> Dashboard</NavLink>
         </li>}
         <li>
-            {user && <Link className="text-lg hover:text-blue-600" onClick={handleLogout}>logout</Link>}
+            {user && <Link className="uppercase font-semibold text-red-400 hover:text-blue-600" onClick={handleLogout}>logout</Link>}
         </li>
     </>
 

@@ -31,7 +31,10 @@ const Dashboard = () => {
                             <ul className="menu menu-horizontal">
                                 {/* Navbar menu content here */}
                                 {admin ? (
-                                    <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> Manage Users</NavLink ></li>
+                                    <ul className="flex">
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageClasses"><FaUsersCog size={20} /> Manage Classes</NavLink ></li>
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> Manage Users</NavLink ></li>
+                                    </ul>
                                 ) : instructor ? (
                                     <ul className="flex">
                                         <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/addClass"><SiGoogleclassroom /> Add Classes</NavLink></li>
@@ -39,7 +42,7 @@ const Dashboard = () => {
                                         <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/myClasses"><SiGoogleclassroom /> My Classes</NavLink ></li>
                                     </ul>
                                 ) : (
-                                    <ul>
+                                    <ul className="flex">
                                         <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/enrolled"><span className="text-xl">☑ </span>My Erolled Classes</NavLink ></li>
                                         <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/history"><span className="text-xl ">❏</span> My Enrolled History</NavLink ></li>
                                     </ul>
@@ -55,7 +58,10 @@ const Dashboard = () => {
                     <ul className="menu p-4 w-52 h-full bg-base-200">
                         {/* Sidebar content here */}
                         {admin ? (
-                            <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> Manage Users</NavLink ></li>
+                            <ul className="flex">
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageClasses"><FaUsersCog size={20} /> Manage Classes</NavLink ></li>
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> Manage Users</NavLink ></li>
+                            </ul>
                         ) : instructor ? (
                             <ul className="flex">
                                 <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/addClass"><SiGoogleclassroom /> Add Classes</NavLink></li>
