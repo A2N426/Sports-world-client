@@ -17,11 +17,13 @@ import AddClass from "../Pages/Dashboard/Instructor/AddClass/AddClass";
 import MyClasses from "../Pages/Dashboard/Instructor/MyClasses/MyClasses";
 import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses/ManageClasses";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
+        errorElement: <NotFound />,
         children: [
             {
                 path: "/",

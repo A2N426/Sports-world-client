@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import './Class.css'
 import Container from "../Shared/Container/Container";
 import SingleClass from "./SingleClass";
+import { Zoom } from "react-awesome-reveal";
 
 const Classes = () => {
     const [classes, setClasses] = useState([])
-    
+
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/classes`)
@@ -14,17 +15,19 @@ const Classes = () => {
     }, [])
     return (
         <div>
-            <div className="hero min-h-screen class-bg"
-            >
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-center text-neutral-content">
-                    <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-bold">OUR ALL CLASSES HERE</h1>
-                        <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary">See More Activities</button>
+            <Zoom>
+                <div className="hero min-h-screen class-bg"
+                >
+                    <div className="hero-overlay bg-opacity-60"></div>
+                    <div className="hero-content text-center text-neutral-content">
+                        <div className="max-w-md">
+                            <h1 className="mb-5 text-5xl font-bold">OUR ALL CLASSES HERE</h1>
+                            <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                            <button className="btn btn-primary">See More Activities</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Zoom>
             <Container>
                 <div className="mt-20 mb-10">
 

@@ -1,3 +1,4 @@
+import { Zoom } from 'react-awesome-reveal';
 import banner1 from '../../assets/banner1.jpg'
 import banner2 from '../../assets/banner2.jpg'
 import banner3 from '../../assets/banner3.jpg'
@@ -5,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Banner = () => {
     return (
-        <div>
+        <Zoom>
             <div className="carousel w-full lg:h-[550px] h-[300px] mt-3">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img src={banner1} className="w-full " />
@@ -65,7 +66,7 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Zoom>
     );
 };
 

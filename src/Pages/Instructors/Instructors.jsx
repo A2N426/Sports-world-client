@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../Shared/Container/Container";
 import SingleInstructor from "./SingleInstructor";
 import './Instructors.css'
+import { Zoom } from "react-awesome-reveal";
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
@@ -13,16 +14,18 @@ const Instructors = () => {
     }, [])
     return (
         <div>
-            <div className="hero min-h-screen instructors-bg text-white">
-                <div className="hero-content flex-col lg:flex-row">
-                    <img src="https://img.freepik.com/free-photo/full-shot-kids-football-team_23-2149271033.jpg?size=626&ext=jpg&ga=GA1.1.24677610.1673838713&semt=ais" className="rounded-lg shadow-2xl" />
-                    <div>
-                        <h1 className="text-5xl font-bold ">The Best Leaders Are Great Teachers</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary">About Them</button>
+            <Zoom>
+                <div className="hero min-h-screen instructors-bg text-white">
+                    <div className="hero-content flex-col lg:flex-row">
+                        <img src="https://img.freepik.com/free-photo/full-shot-kids-football-team_23-2149271033.jpg?size=626&ext=jpg&ga=GA1.1.24677610.1673838713&semt=ais" className="rounded-lg shadow-2xl" />
+                        <div>
+                            <h1 className="text-5xl font-bold ">The Best Leaders Are Great Teachers</h1>
+                            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                            <button className="btn btn-primary">About Them</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Zoom>
             <Container>
                 <div className="mt-10 mb-10 lg:flex justify-between items-center">
                     <div>

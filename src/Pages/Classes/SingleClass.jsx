@@ -2,6 +2,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { Fade } from "react-awesome-reveal";
 
 const SingleClass = ({ singleClass }) => {
     const [isAdmin] = useAdmin();
@@ -53,7 +54,7 @@ const SingleClass = ({ singleClass }) => {
             })
     }
     return (
-        <div>
+        <Fade>
             <div className={`card w-80 bg-base-100 shadow-xl ${singleClass.available_seats === 0 ? "cursor-not-allowed bg-red-800" : ""}`}>
                 <figure className="px-10 pt-10">
                     <img src={singleClass.image} alt="Shoes" className="rounded-xl" />
@@ -81,32 +82,7 @@ const SingleClass = ({ singleClass }) => {
                     </div>
                 </div>
             </div>
-            {/* <Card
-                className={`${singleClass.available_seats === 0 ? "cursor-not-allowed bg-red-800" : ""}`}
-                imgAlt="Meaningful alt text for an image that is not purely decorative"
-                imgSrc={singleClass.image}
-            >
-                <div>
-                    <p className="text-xl"><span className="font-semibold">Class: </span>{singleClass.className}</p>
-                    <p className="text-xl"><span className="font-semibold">Instructor: </span>{singleClass.instructor}</p>
-                    <p className="text-xl dark:text-gray-400">
-                        <span className=" font-semibold">Available Seats:</span> {singleClass.available_seats}
-                    </p>
-                    <p className="text-xl"><span className="font-semibold">Price: </span>${singleClass.price}</p>
-                    <p className="text-xl"><span className="font-semibold">students: </span>{singleClass.students}</p>
-                </div>
-                {admin ? (
-                    <button className="btn bg-blue-600 btn-disabled">Can not Select</button>
-                ) : instructor ? (
-                    <button className="btn bg-blue-600 btn-disabled">Can not Select</button>
-                )
-                    : singleClass.available_seats === 0 ? (<button className="btn bg-blue-600 btn-disabled">Can not Select</button>
-                    )
-                        : (
-                            <button onClick={() => handleSelect(singleClass)} className="btn btn-active btn-primary">Select</button>
-                        )}
-            </Card> */}
-        </div>
+        </Fade>
     );
 };
 

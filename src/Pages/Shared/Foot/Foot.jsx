@@ -1,4 +1,7 @@
 import { Footer } from "flowbite-react";
+import { FaFacebookSquare } from 'react-icons/fa';
+import { BsInstagram, BsYoutube } from 'react-icons/bs';
+import { AiFillTwitterSquare } from 'react-icons/ai';
 
 const Foot = () => {
     return (
@@ -7,19 +10,16 @@ const Foot = () => {
                 <div className="w-full">
                     <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
                         <div>
-                            <Footer.Title title="Company" />
+                            <Footer.Title title="SPORTS WORLD" />
                             <Footer.LinkGroup col>
                                 <Footer.Link href="#">
-                                    <img className="w-10 h-10" src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="" />
+                                    <img className="w-10 rounded-lg h-10" src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="" />
                                 </Footer.Link>
                                 <Footer.Link href="#">
                                     Careers
                                 </Footer.Link>
                                 <Footer.Link href="#">
                                     Brand Center
-                                </Footer.Link>
-                                <Footer.Link href="#">
-                                    Blog
                                 </Footer.Link>
                             </Footer.LinkGroup>
                         </div>
@@ -76,29 +76,13 @@ const Foot = () => {
                         <Footer.Copyright
                             by="Flowbite™"
                             href="#"
-                            year={2022}
+                            year={2023}
                         />
-                        <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                            {/* <Footer.Icon
-                                href="#"
-                                icon="youtube"
-                            />
-                            <Footer.Icon
-                                href="#"
-                                icon="instagram"
-                            />
-                            <Footer.Icon
-                                href="#"
-                                icon="facebook"
-                            />
-                            <Footer.Icon
-                                href="#"
-                                icon="LinkedIn"
-                            />
-                            <Footer.Icon
-                                href="#"
-                                icon="Icon"
-                            /> */}
+                        <div className="mt-4 flex text-gray-400 text-3xl space-x-6 sm:mt-0 sm:justify-center">
+                            <FaFacebookSquare />
+                            <BsInstagram />
+                            <BsYoutube />
+                            <AiFillTwitterSquare />
                         </div>
                     </div>
                 </div>

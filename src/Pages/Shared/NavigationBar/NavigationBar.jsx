@@ -66,8 +66,8 @@ const NavigationBar = () => {
                         <img className="rounded-full h-10" src={user.photoURL} alt="" />
                         :
                         <>
-                            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/login">Login</NavLink>
-                            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/register">Sign Up</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 uppercase font-semibold')} to="/login">Login</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 uppercase font-semibold')} to="/register">Sign Up</NavLink>
                         </>
                     }
                 </div>

@@ -11,7 +11,7 @@ const Marque = ({ handleTheme }) => {
                 Entertainment News International (ENI) is the #1 popular culture network for adult fans all around the world. Get the scoop on all the popular comics.......
 
             </Marquee>
-            <button className='btn btn-primary btn-sm' onClick={handleTheme}>Dark Mode</button>
+            <button className='btn btn-primary rounded-l-none lg:btn-sm btn-xs' onClick={handleTheme}>Dark Mode</button>
         </div>
     );
 };
