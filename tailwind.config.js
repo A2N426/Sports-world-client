@@ -5,8 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
+  darkMode:"class",
   theme: {
-    extend: {},
+    extends: {},
   },
   plugins: [require("daisyui"), require('flowbite')],
 }
