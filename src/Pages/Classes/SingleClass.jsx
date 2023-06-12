@@ -2,7 +2,6 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
-import { Fade } from "react-awesome-reveal";
 
 const SingleClass = ({ singleClass }) => {
     const [isAdmin] = useAdmin();
@@ -13,9 +12,9 @@ const SingleClass = ({ singleClass }) => {
     const handleSelect = (singleClass) => {
         if (!user) {
             Swal.fire(
-                'Good job!',
+                'Login First',
                 'Login First before selecting!',
-                'success'
+                'warning'
             )
             navigate("/login")
             return;
@@ -54,20 +53,19 @@ const SingleClass = ({ singleClass }) => {
             })
     }
     return (
-        <Fade>
+        <div data-aos="fade-left">
             <div className={`card w-80 bg-base-100 shadow-xl ${singleClass.available_seats === 0 ? "cursor-not-allowed bg-red-800" : ""}`}>
                 <figure className="px-10 pt-10">
                     <img src={singleClass.image} alt="Shoes" className="rounded-xl" />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">{singleClass.className}</h2>
-                    <p className="text-xl"><span className="font-semibold">Class: </span>{singleClass.className}</p>
+                    <p className="text-xl"><span className="font-semibold">Class Name: </span>{singleClass.className}</p>
                     <p className="text-xl"><span className="font-semibold">Instructor: </span>{singleClass.instructor}</p>
                     <p className="text-xl dark:text-gray-400">
                         <span className=" font-semibold">Available Seats:</span> {singleClass.available_seats}
                     </p>
-                    <p className="text-xl"><span className="font-semibold">Price: </span>${singleClass.price}</p>
-                    <p className="text-xl"><span className="font-semibold">students: </span>{singleClass.students}</p>
+                    <p className="text-xl"><span className="font-semibold">Monthly Fee: </span>${singleClass.price}</p>
+                    <p className="text-xl"><span className="font-semibold">Students: </span>{singleClass.students}</p>
                     <div className="card-actions">
                         {admin ? (
                             <button className="btn bg-blue-600 btn-disabled">Can not Select</button>
@@ -82,7 +80,7 @@ const SingleClass = ({ singleClass }) => {
                     </div>
                 </div>
             </div>
-        </Fade>
+        </div>
     );
 };
 

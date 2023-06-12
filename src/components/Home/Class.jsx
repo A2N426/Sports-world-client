@@ -1,9 +1,8 @@
-import { Zoom } from "react-awesome-reveal";
 import {Link} from "react-router-dom"
 
 const Class = ({ singleClass }) => {
     return (
-        <Zoom delay={100} duration={1000}>
+        <div data-aos="fade-right" >
             <div className="card border hover:border-red-400 lg:w-80 w-80 bg-base-100 mx-auto shadow-xl">
                 <figure className="px-10 pt-10">
                     <img src={singleClass.image} alt="Shoes" className="rounded-xl" />
@@ -17,7 +16,7 @@ const Class = ({ singleClass }) => {
                     </div>
                 </div>
             </div>
-        </Zoom>
+        </div>
     );
 };
 

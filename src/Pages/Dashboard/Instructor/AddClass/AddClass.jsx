@@ -60,8 +60,7 @@ const AddClass = () => {
                         .then(res => {
                             if (res.data.insertedId) {
                                 Swal.fire(
-                                    'Your Operations Has been success',
-                                    'Class Successfully Added!',
+                                    'Your class successfully added',
                                     'success'
                                 )
                             }

@@ -35,7 +35,7 @@ const Dashboard = () => {
                                 {admin ? (
                                     <ul className="flex items-center">
                                         <li><Link className="font-semibold hover:text-blue-700" to="/"><AiOutlineHome className="text-xl" /> HOME</Link></li>
-                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200' : 'hover:text-blue-700')} to="/dashboard/manageClasses"><FaUsersCog size={20} /> MANAGE CLASSES</NavLink ></li>
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 font-semibold')} to="/dashboard/manageClasses"><FaUsersCog size={20} /> MANAGE CLASSES</NavLink ></li>
                                         <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 ' : 'font-bold hover:text-blue-700 ')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> MANAGE USERS</NavLink ></li>
                                     </ul>
                                 ) : instructor ? (
@@ -49,7 +49,7 @@ const Dashboard = () => {
                                     <ul className="flex items-center">
                                         <li><Link className="hover:text-blue-700 font-semibold uppercase" to="/"> <AiOutlineHome className="text-xl" /> Home</Link></li>
 
-                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 font-semibold uppercase')} to="/dashboard/studentHome"><span className="text-xl">✔ </span>Your Selected Classes</NavLink >
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 font-semibold uppercase')} to="/dashboard/studentHome"><span className="text-xl">✔ </span>My Selected Classes</NavLink >
                                         </li>
                                         <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 font-semibold uppercase')} to="/dashboard/enrolled"><span className="text-xl">☑ </span>My Erolled Classes</NavLink >
                                         </li>
@@ -82,7 +82,12 @@ const Dashboard = () => {
                         ) : (
                             <ul>
                                 <li><Link className="hover:text-blue-700 uppercase font-semibold" to="/"><AiOutlineHome className="text-xl" />  Home</Link></li>
+
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 font-semibold uppercase')} to="/dashboard/studentHome"><span className="text-xl">✔ </span>My Selected Classes</NavLink >
+                                </li>
+
                                 <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 uppercase font-semibold')} to="/dashboard/enrolled"><span className="text-xl">☑ </span>My Erolled Classes</NavLink ></li>
+
                                 <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 uppercase font-semibold tracking-wide transition-colors duration-200' : 'hover:text-blue-700 uppercase font-semibold')} to="/dashboard/history"><span className="text-xl ">❏</span> My Enrolled History</NavLink ></li>
                             </ul>
                         )}

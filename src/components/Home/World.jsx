@@ -19,7 +19,7 @@ const World = () => {
                         <h1 className="text-3xl mt-2">Talent Search Methods</h1>
                         <p className="text-black mt-4">You are a subject expert. You are in the process of designing a face-to-face interactive course and wonder how to offer it to the market.</p>
                     </div>
-                    <div className="border p-7 text-center bg-slate-100 hover:border-green-600 hover:text-blue-600 ">
+                    <div className="border p-7 text-center bg-slate-100 hover:border-green-600 hover:text-green-600">
                         <FiMonitor className="text-5xl text-green-600 mx-auto" />
                         <h1 className="text-3xl mt-2">Value Based Education</h1>
                         <p className="text-black mt-4">You are a subject expert. You are in the process of designing a face-to-face interactive course and wonder how to offer it to the market.</p>

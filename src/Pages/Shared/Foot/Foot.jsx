@@ -74,7 +74,7 @@ const Foot = () => {
                     </div>
                     <div className="w-full bg-gray-700 px-4 py-6 sm:flex sm:items-center sm:justify-between">
                         <Footer.Copyright
-                            by="Flowbite™"
+                            by="SportsWorld11"
                             href="#"
                             year={2023}
                         />

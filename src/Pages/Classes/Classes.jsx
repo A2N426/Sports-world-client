@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import './Class.css'
 import Container from "../Shared/Container/Container";
 import SingleClass from "./SingleClass";
-import { Zoom } from "react-awesome-reveal";
 
 const Classes = () => {
     const [classes, setClasses] = useState([])
@@ -15,7 +14,6 @@ const Classes = () => {
     }, [])
     return (
         <div>
-            <Zoom>
                 <div className="hero min-h-screen class-bg"
                 >
                     <div className="hero-overlay bg-opacity-60"></div>
@@ -27,7 +25,6 @@ const Classes = () => {
                         </div>
                     </div>
                 </div>
-            </Zoom>
             <Container>
                 <div className="mt-20 mb-10">
 

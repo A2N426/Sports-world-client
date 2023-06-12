@@ -1,4 +1,4 @@
-import { BounceLoader } from "react-spinners";
+import {  ScaleLoader } from "react-spinners";
 
 const Loader = () => {
     return (
@@ -9,7 +9,7 @@ const Loader = () => {
         justify-center 
         items-center 
       '>
-            <BounceLoader size={100} color="red" />
+            <ScaleLoader size={80} color="blue" />
         </div>
     );
 };
