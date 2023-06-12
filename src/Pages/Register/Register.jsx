@@ -103,6 +103,7 @@ const Register = () => {
                     <div className="">
                         <div className="card shadow-2xl bg-base-100">
                             <div className="card-body">
+                            <h1 className="text-3xl text-center font-2xl">Please Register Your Account</h1>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Name</span>

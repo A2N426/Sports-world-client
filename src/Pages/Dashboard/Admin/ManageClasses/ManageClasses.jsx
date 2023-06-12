@@ -3,12 +3,13 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2'
 
 const ManageClasses = () => {
+    const [refresh, setRefresh] = useState(false);
     const [allClasses, setAllClasses] = useState([])
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/allClasses`)
             .then(res => res.json())
             .then(data => setAllClasses(data))
-    }, [allClasses])
+    }, [refresh])
 
     // feedback working here
     const [feedText, setFeedbackText] = useState("")
@@ -22,6 +23,7 @@ const ManageClasses = () => {
         axiosSecure.put(`/classes/${id}`, { feedText })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
+                    setRefresh(!refresh)
                     Swal.fire(
                         'Good job!',
                         'Successfully Feedback Send',

@@ -18,7 +18,7 @@ const PopularClasses = () => {
                 
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                {classes.map((singleClass, index) => <Class key={index} singleClass={singleClass}></Class>)}
+                {classes.slice(0,6).map((singleClass, index) => <Class key={index} singleClass={singleClass}></Class>)}
             </div>
         </Container>
     );

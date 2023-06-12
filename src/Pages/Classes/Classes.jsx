@@ -29,7 +29,7 @@ const Classes = () => {
                 <div className="mt-20 mb-10">
 
                     <h1 className="mt-20 mb-10 text-4xl uppercase text-center text-primary font-semibold">This is our Presentation</h1>
-                    <div className="grid gird-cols-1 lg:grid-cols-3 gap-5">
+                    <div className="grid gird-cols-1 lg:grid-cols-3 gap-10">
                         {classes.map((singleClass, index) => <SingleClass key={index} singleClass={singleClass}></SingleClass>)}
                     </div>
                 </div>

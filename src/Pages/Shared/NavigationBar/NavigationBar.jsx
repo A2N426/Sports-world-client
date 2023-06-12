@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAdmin from "../../../hooks/useAdmin";
+import { MdSpaceDashboard } from 'react-icons/md';
 
 const NavigationBar = () => {
     const { user, logOut } = useAuth();
@@ -15,25 +16,25 @@ const NavigationBar = () => {
 
     const navItem = <>
         <li>
-            <Link to="/">Home</Link>
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/">Home</NavLink>
         </li>
         <li>
-            <Link to="/instructors">Instructors</Link>
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/instructors">Instructors</NavLink>
         </li>
         <li>
-            <Link to="/classes ">Classes</Link>
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/classes ">Classes</NavLink>
         </li>
         {user && <li>
-            <Link to={admin ? (
+            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to={admin ? (
                 "/Dashboard/manageClasses"
             ) : instructor ? (
                 "/dashboard/addClass"
             ) : (
                 "/dashboard/studentHome"
-            )}>Dashboard</Link>
+            )}><MdSpaceDashboard size={20} /> Dashboard</NavLink>
         </li>}
         <li>
-            <Link onClick={handleLogout}>logout</Link>
+            {user && <Link className="text-lg hover:text-blue-600" onClick={handleLogout}>logout</Link>}
         </li>
     </>
 
@@ -52,7 +53,7 @@ const NavigationBar = () => {
                     </div>
                     <Link to="/" className="flex items-center gap-3">
                         <img className="h-10 lg:w-10 w-14 rounded-full" src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="" />
-                        <p className="normal-case text-xl font-semibold">Open Sports</p>
+                        <p className="normal-case text-xl font-semibold ">OPEN SPORTS</p>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -65,8 +66,8 @@ const NavigationBar = () => {
                         <img className="rounded-full h-10" src={user.photoURL} alt="" />
                         :
                         <>
-                            <Link to="/login">Login</Link>
-                            <Link to="/register">Sign Up</Link>
+                            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/login">Login</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/register">Sign Up</NavLink>
                         </>
                     }
                 </div>

@@ -1,12 +1,14 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import Foot from "../Pages/Shared/Foot/Foot";
+import { FaUsersCog } from 'react-icons/fa';
+import { SiGoogleclassroom } from 'react-icons/si';
+
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const admin = isAdmin?.admin?.admin;
     const instructor = isAdmin?.instructor?.instructor;
-    // console.log("from i",instructor)
 
 
     return (
@@ -29,15 +31,17 @@ const Dashboard = () => {
                             <ul className="menu menu-horizontal">
                                 {/* Navbar menu content here */}
                                 {admin ? (
-                                    <li><Link to="/dashboard/manageUsers">Manage Users</Link></li>
+                                    <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> Manage Users</NavLink ></li>
                                 ) : instructor ? (
-                                    <ul>
-                                        <li><Link to="/dashboard/myClasses">My Classes</Link></li>
+                                    <ul className="flex">
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/addClass"><SiGoogleclassroom /> Add Classes</NavLink></li>
+
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/myClasses"><SiGoogleclassroom /> My Classes</NavLink ></li>
                                     </ul>
                                 ) : (
                                     <ul>
-                                        <li><Link to="/dashboard/enrolled">My Erolled Classes</Link></li>
-                                        <li><Link to="/dashboard/history">My Enrolled History</Link></li>
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/enrolled"><span className="text-xl">☑ </span>My Erolled Classes</NavLink ></li>
+                                        <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/history"><span className="text-xl ">❏</span> My Enrolled History</NavLink ></li>
                                     </ul>
                                 )}
                             </ul>
@@ -48,16 +52,22 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 h-full bg-base-200">
+                    <ul className="menu p-4 w-52 h-full bg-base-200">
                         {/* Sidebar content here */}
                         {admin ? (
-                            <li><a>admin</a></li>
+                            <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/manageUsers"><FaUsersCog size={20} /> Manage Users</NavLink ></li>
                         ) : instructor ? (
-                            <li><a>instructor</a></li>
-                        ) : (
-                            <li><Link to="/dashboard/enrolled">My Enrolled Class</Link></li>
-                        )}
+                            <ul className="flex">
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/addClass"><SiGoogleclassroom /> Add Classes</NavLink></li>
 
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/myClasses"><SiGoogleclassroom /> My Classes</NavLink ></li>
+                            </ul>
+                        ) : (
+                            <ul>
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/enrolled"><span className="text-xl">☑ </span>My Erolled Classes</NavLink ></li>
+                                <li><NavLink className={({ isActive }) => (isActive ? 'text-blue-600 normal-case font-bold tracking-wide transition-colors duration-200 text-md text-lg' : 'hover:text-blue-700 text-lg')} to="/dashboard/history"><span className="text-xl ">❏</span> My Enrolled History</NavLink ></li>
+                            </ul>
+                        )}
                     </ul>
 
                 </div>

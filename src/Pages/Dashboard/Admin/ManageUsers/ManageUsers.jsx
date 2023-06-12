@@ -3,19 +3,22 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([])
+    const [refresh, setRefresh] = useState(false);
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users`)
             .then(res => res.json())
             .then(data => setUsers(data))
-    }, [users])
+    }, [refresh])
 
     const [axiosSecure] = useAxiosSecure()
     const handleRole = (id, role) => {
         axiosSecure.put(`/usersRole/${id}`, { role })
             .then(res => {
+                setRefresh(!refresh)
                 console.log("from admin", res.data)
             })
     }
+
     return (
         <div>
             <div>
@@ -53,7 +56,7 @@ const ManageUsers = () => {
                                 <td className="flex gap-4">
                                     <button
                                         onClick={() => handleRole(user?._id, "admin")}
-                                        disabled={user?.role === "admin" && true } className="btn btn-primary btn-xs">Make Admin</button>
+                                        disabled={user?.role === "admin" && true} className="btn btn-primary btn-xs">Make Admin</button>
                                     <button onClick={() => handleRole(user?._id, "instructor")}
                                         disabled={user?.role === "instructor" && true} className="btn btn-primary btn-xs">Make Instructor</button>
                                 </td>

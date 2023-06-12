@@ -18,6 +18,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(eyeOff);
+    const [error, setError] = useState("")
 
     // password hide un hide
     const handleToggle = () => {
@@ -32,6 +33,7 @@ const Login = () => {
 
     // login 
     const onSubmit = data => {
+        setError("")
         signIn(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
@@ -39,7 +41,7 @@ const Login = () => {
                 navigate(from, { replace: true })
             })
             .catch(error => {
-                // setLoading(false)
+                setError(error.message)
                 console.log("from login error", error.message)
             })
     };
@@ -66,6 +68,7 @@ const Login = () => {
                     <div className="">
                         <div className="card shadow-2xl bg-base-100">
                             <div className="card-body">
+                                <h1 className="text-3xl text-center font-2xl">Please Login</h1>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
@@ -87,6 +90,7 @@ const Login = () => {
                                             <Icon className="absolute mr-10" icon={icon} size={20} />
                                         </span>
                                     </div>
+                                    {error && <p className="text-red-600">{error}</p>}
                                     <label className="label">
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>

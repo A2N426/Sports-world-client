@@ -1,5 +1,3 @@
-import { Card } from "flowbite-react";
-// import useRole from "../../hooks/useRole";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +7,6 @@ const SingleClass = ({ singleClass }) => {
     const [isAdmin] = useAdmin();
     const admin = isAdmin?.admin?.admin;
     const instructor = isAdmin?.instructor?.instructor;
-    // const [role] = useRole()
     const { user } = useAuth()
     const navigate = useNavigate();
     const handleSelect = (singleClass) => {
@@ -57,7 +54,34 @@ const SingleClass = ({ singleClass }) => {
     }
     return (
         <div>
-            <Card
+            <div className={`card w-80 bg-base-100 shadow-xl ${singleClass.available_seats === 0 ? "cursor-not-allowed bg-red-800" : ""}`}>
+                <figure className="px-10 pt-10">
+                    <img src={singleClass.image} alt="Shoes" className="rounded-xl" />
+                </figure>
+                <div className="card-body">
+                    <h2 className="card-title">{singleClass.className}</h2>
+                    <p className="text-xl"><span className="font-semibold">Class: </span>{singleClass.className}</p>
+                    <p className="text-xl"><span className="font-semibold">Instructor: </span>{singleClass.instructor}</p>
+                    <p className="text-xl dark:text-gray-400">
+                        <span className=" font-semibold">Available Seats:</span> {singleClass.available_seats}
+                    </p>
+                    <p className="text-xl"><span className="font-semibold">Price: </span>${singleClass.price}</p>
+                    <p className="text-xl"><span className="font-semibold">students: </span>{singleClass.students}</p>
+                    <div className="card-actions">
+                        {admin ? (
+                            <button className="btn bg-blue-600 btn-disabled">Can not Select</button>
+                        ) : instructor ? (
+                            <button className="btn bg-blue-600 btn-disabled w-full">Can not Select</button>
+                        )
+                            : singleClass.available_seats === 0 ? (<button className="btn bg-blue-600 btn-disabled w-full">Can not Select</button>
+                            )
+                                : (
+                                    <button onClick={() => handleSelect(singleClass)} className="btn btn-active btn-primary w-full">Select</button>
+                                )}
+                    </div>
+                </div>
+            </div>
+            {/* <Card
                 className={`${singleClass.available_seats === 0 ? "cursor-not-allowed bg-red-800" : ""}`}
                 imgAlt="Meaningful alt text for an image that is not purely decorative"
                 imgSrc={singleClass.image}
@@ -81,15 +105,9 @@ const SingleClass = ({ singleClass }) => {
                         : (
                             <button onClick={() => handleSelect(singleClass)} className="btn btn-active btn-primary">Select</button>
                         )}
-            </Card>
+            </Card> */}
         </div>
     );
 };
 
 export default SingleClass;
-
-// singleClass.available_seats === 0 && !role ?
-//     <button className="btn bg-blue-600 btn-disabled">Can not Select</button>
-//     :
-
-//     <button onClick={() => handleSelect(singleClass)} className="btn btn-active btn-primary">Select</button>
